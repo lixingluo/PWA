@@ -1,0 +1,82 @@
+/* Step 1 - Mark up  */
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #fdfdfd;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* align-items 属性定义flex子项在flex容器的当前行的纵轴方向上的对齐方式 */
+}
+ul {
+  list-style: none; /* list style 去冒号 */
+  display: flex;
+}
+li {
+  margin-right: 1rem;
+}
+h1 {
+  color: #e74c3c;
+}
+/* Step 2 - Grid */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 1rem;
+  justify-content: center; /* justify-content 用于设置或检索弹性盒子元素在横轴方向上的对齐方式; center 项目位于容器的中心 */
+  align-items: center; /* 同上 nav align-itmes; center 元素位于容器的中心 会向两个方向溢出相同的长度 */
+  margin: auto;
+  padding: 1rem 0; /* 上 - 右 - 下 - 左 | 上下 - 左右 */
+}
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* flex-direction 默认是row */
+  width: 15rem auto;
+  height: 15rem;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  /* box-shadow: h-shadow v-shadow blur spread color inset 水平阴影 垂直阴影 模糊距离 阴影大小 阴影颜色 从外层的阴影改变阴影内侧阴影 */
+  border-radius: 10px;
+  margin: auto;
+  overflow: hidden;
+}
+.card--avatar {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+  /* object-fit: fill contain cover none scale-down */
+  /* fill: 不保证保持原有的比例，内容拉伸填充整个内容容器 */
+  /* contain: 保持原有尺寸比例。内容被缩放 */
+  /* cover: 保持原有尺寸比例。但部分内容可能被剪切 */
+  /* none: 保留原有元素内容的长度和宽度，也就是说内容不会被重置 */
+  /* scale-down: 保持原有尺寸比例。内容的尺寸与 none 或 contain 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些 */
+}
+.card--title {
+  color: #222;
+  font-weight: 700; /* font-weight 属性设置文本的粗细 normal bold bolder lighter inherit 100~900 */
+  text-transform: capitalize; /* text-transform 属性控制文本的大小写 none capitalize uppercase lowercase inherit */
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+.card--link {
+  text-decoration: none; /* text-decoration 属性规定添加到文本的修饰，下划线、上划线、删除线 */
+  /* text-decoration: underline wavy red; 红色波浪形下划线 */
+  background: #db4938;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}

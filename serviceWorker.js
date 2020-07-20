@@ -1,3 +1,5 @@
+/* declare the assets to store in the cache */
+/* staticDevCoffee is the name of the cache */
 const staticDevCoffee = "dev-coffee-site-v1"
 const assets = [
   "/",
@@ -14,14 +16,6 @@ const assets = [
   "images/coffee8.jpg",
   "images/coffee9.jpg",
 ]
-/* declare the assets to store in the cache */
-self.addEventListener("install", installEvent => {
-  installEvent.waitUntil(
-    caches.open(staticDevCoffee).then(cache => {
-      cache.addAll(assets)
-    })
-  )
-})
 /* attach a listener to self, which is the service worker itself */
 /* it enables us to listen to life cycle events and do something in return */
 /* the service worker has several life cycles, and one of them is the install event */
@@ -31,10 +25,10 @@ self.addEventListener("install", installEvent => {
 /* waitUntil() - waits for the action to finish */
 /* open() - create our cache by passing its name as an argument to caches.open( */
 /* then it returns a promise which helps us store our assets in the cache with cache.addAll(assets) */
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request)
+self.addEventListener("install", installEvent => {
+  installEvent.waitUntil(
+    caches.open(staticDevCoffee).then(cache => {
+      cache.addAll(assets)
     })
   )
 })
@@ -46,3 +40,12 @@ self.addEventListener("fetch", fetchEvent => {
 /* Now 1-1, our assets can be cached and fetched by the service worker which increases the load time of our images quite a bit */
 /* 1-2, most important, it makes our app available in offline mode */
 /* 2-1 But a service worker alone can't do the job. We need to register it in our project */
+// service worker成功注册，并且用户浏览了另一个页面或者刷新了当前的页面，service worker将开始接收到fetch事件。
+// 拦截网络请求并使用缓存，缓存命中，返回缓存资源，否则返回一个实时从网络请求fetch的结果
+self.addEventListener("fetch", fetchEvent => {
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then(res => {
+      return res || fetch(fetchEvent.request)
+    })
+  )
+})

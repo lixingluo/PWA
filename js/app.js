@@ -26,6 +26,8 @@ const showCoffees = () => {
 }
 document.addEventListener("DOMContentLoaded", showCoffees)
 
+// 检查service worker API是否可用，如果可用就注册service worker
+// 从这里就可以看出Service Worker就是navigator的一个属性对象
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
     navigator.serviceWorker
